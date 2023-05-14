@@ -23,6 +23,7 @@ class Product {
     termPrice = json['termPrice'];
     isFavorite = json['isFavorite'];
     infos = json['infos'];
+    image = json['image'];
   }
 
   Map<String, dynamic> toJson() {
@@ -33,6 +34,7 @@ class Product {
     data['termPrice'] = termPrice;
     data['isFavorite'] = isFavorite;
     data['infos'] = infos;
+    data['image'] = image;
     return data;
   }
 }

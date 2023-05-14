@@ -9,7 +9,7 @@ class PhoneplanetProductCard extends StatelessWidget {
   final String? label;
   final String? image;
   final num price;
-  final bool isFavorite;
+  final bool? isFavorite;
   final Function? onPressedCard;
   final Function? onPressedAdd;
   final Function? onPressedFavorite;
@@ -90,8 +90,8 @@ class PhoneplanetProductCard extends StatelessWidget {
           child: GestureDetector(
             onTap: () => onPressedFavorite?.call(),
             child: Icon(
-              isFavorite ? Icons.favorite : Icons.favorite_border,
-              color: isFavorite ? PhoneplanetColors.red : Colors.grey,
+              isFavorite! ? Icons.favorite : Icons.favorite_border,
+              color: isFavorite! ? PhoneplanetColors.red : Colors.grey,
             ),
           ),
         ),

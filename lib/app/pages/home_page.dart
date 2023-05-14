@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:phoneplanet/api/api.dart';
 import 'package:phoneplanet/app/shared/blocs/home_bloc/bloc.dart';
 import 'package:phoneplanet/design_system/components/buttons/phoneplanet_icon_button.dart';
 import 'package:phoneplanet/design_system/components/buttons/phoneplanet_select_button.dart';
@@ -155,30 +156,24 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SizedBox(height: 18),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: PhoneplanetProductCard(
-                          image:
-                              'https://d3ddx6b2p2pevg.cloudfront.net/Custom/Content/Products/10/97/1097084_smartphone-apple-iphone-13-pro-max-grafite-128gb_m3_637744691579753512.jpg',
-                          title: 'Iphone 13 Pro Max',
-                          label: 'Novo na caixa',
-                          price: 5500,
+                      for (Product product in state.newcomersProducts)
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(right: product == state.newcomersProducts.last ? 0 : 8),
+                            child: PhoneplanetProductCard(
+                              title: product.name!,
+                              price: product.price!,
+                              label: product.subtitle,
+                              image: product.image,
+                              isFavorite: product.isFavorite,
+                            ),
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 8),
-                      Expanded(
-                        child: PhoneplanetProductCard(
-                          image:
-                              'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MKU83_VW_34FR+watch-40-alum-midnight-nc-se_VW_34FR_WF_CO_GEO_BR?wid=1400&hei=1400&trim=1%2C0&fmt=p-jpg&qlt=95&.v=1683237043713',
-                          title: 'Apple watch',
-                          label: 'Promoção',
-                          price: 1100,
-                        ),
-                      ),
                     ],
                   ),
                 ),
