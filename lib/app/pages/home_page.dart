@@ -141,13 +141,24 @@ class _HomePageState extends State<HomePage> {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24.0),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
-                      child: PhoneplanetProductCard(),
+                      child: PhoneplanetProductCard(
+                        image:
+                            'https://d3ddx6b2p2pevg.cloudfront.net/Custom/Content/Products/10/97/1097084_smartphone-apple-iphone-13-pro-max-grafite-128gb_m3_637744691579753512.jpg',
+                        title: 'Iphone 13 Pro Max',
+                        label: 'Novo na caixa',
+                      ),
                     ),
                     SizedBox(width: 8),
                     Expanded(
-                      child: PhoneplanetProductCard(),
+                      child: PhoneplanetProductCard(
+                        image:
+                            'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MKU83_VW_34FR+watch-40-alum-midnight-nc-se_VW_34FR_WF_CO_GEO_BR?wid=1400&hei=1400&trim=1%2C0&fmt=p-jpg&qlt=95&.v=1683237043713',
+                        title: 'Apple watch',
+                        label: 'Promoção',
+                      ),
                     ),
                   ],
                 ),
@@ -176,13 +187,24 @@ class _HomePageState extends State<HomePage> {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24.0),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
-                      child: PhoneplanetProductCard(),
+                      child: PhoneplanetProductCard(
+                        image:
+                            'https://d3ddx6b2p2pevg.cloudfront.net/Custom/Content/Products/10/97/1097084_smartphone-apple-iphone-13-pro-max-grafite-128gb_m3_637744691579753512.jpg',
+                        title: 'Iphone 13 Pro Max',
+                        label: 'Seminovo',
+                      ),
                     ),
                     SizedBox(width: 8),
                     Expanded(
-                      child: PhoneplanetProductCard(),
+                      child: PhoneplanetProductCard(
+                        image:
+                            'https://www.iplace.com.br/ccstore/v1/images/?source=/file/v1241423504693820270/products/219321.00-apple-ipad-9-geracao-wifi-cellular-256gb-cinzaespacial-mk4e3bz-a.jpg&height=475&width=475&height=470&width=470&quality=0.8',
+                        title: 'Ipad 8',
+                        label: 'Novo na caixa',
+                      ),
                     ),
                   ],
                 ),

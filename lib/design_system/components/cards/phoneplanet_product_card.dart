@@ -4,7 +4,16 @@ import 'package:phoneplanet/design_system/phoneplanet_colors.dart';
 import 'package:phoneplanet/design_system/styles/phoneplanet_text_styles.dart';
 
 class PhoneplanetProductCard extends StatelessWidget {
-  const PhoneplanetProductCard({Key? key}) : super(key: key);
+  final String title;
+  final String? label;
+  final String? image;
+
+  const PhoneplanetProductCard({
+    Key? key,
+    required this.title,
+    this.label,
+    this.image,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,19 +33,19 @@ class PhoneplanetProductCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Image(
+              image != null ? Image(
                 image: NetworkImage(
-                  'https://d3ddx6b2p2pevg.cloudfront.net/Custom/Content/Products/10/97/1097084_smartphone-apple-iphone-13-pro-max-grafite-128gb_m3_637744691579753512.jpg',
+                  image!,
                 ),
-              ),
+              ) : Container(width: double.infinity),
               const SizedBox(height: 8),
-              const Text(
-                'Iphone 13',
+              Text(
+                title,
                 style: PhoneplanetTextStyles.smallTitle,
               ),
               const SizedBox(height: 4),
-              const Text(
-                'Novo na caixa',
+              if (label != null) Text(
+                label!,
                 style: PhoneplanetTextStyles.subtitle,
               ),
               const SizedBox(height: 12),
