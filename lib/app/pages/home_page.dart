@@ -178,6 +178,9 @@ class _HomePageState extends State<HomePage> {
                               label: product.subtitle,
                               image: product.image,
                               isFavorite: product.isFavorite,
+                              onPressedFavorite: () => setState(() {
+                                product.isFavorite = !(product.isFavorite ?? true);
+                              }),
                             ),
                           ),
                         ),
@@ -223,6 +226,9 @@ class _HomePageState extends State<HomePage> {
                               image: product.image,
                               label: product.subtitle,
                               isFavorite: product.isFavorite,
+                              onPressedFavorite: () => setState(() {
+                                product.isFavorite = !(product.isFavorite ?? true);
+                              }),
                             ),
                           ),
                         ),
