@@ -7,6 +7,7 @@ class PhoneplanetProductCard extends StatelessWidget {
   final String title;
   final String? label;
   final String? image;
+  final Function? onPressedCard;
   final Function? onPressedAdd;
 
   const PhoneplanetProductCard({
@@ -14,6 +15,7 @@ class PhoneplanetProductCard extends StatelessWidget {
     required this.title,
     this.label,
     this.image,
+    this.onPressedCard,
     this.onPressedAdd,
   }) : super(key: key);
 
@@ -21,44 +23,47 @@ class PhoneplanetProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          padding: const EdgeInsets.all(6),
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: PhoneplanetColors.lightGrey,
-                blurRadius: 10,
-              )
-            ],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              image != null ? Image(
-                image: NetworkImage(
-                  image!,
+        GestureDetector(
+          onTap: () => onPressedCard?.call(),
+          child: Container(
+            padding: const EdgeInsets.all(6),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: PhoneplanetColors.lightGrey,
+                  blurRadius: 10,
+                )
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                image != null ? Image(
+                  image: NetworkImage(
+                    image!,
+                  ),
+                ) : Container(width: double.infinity),
+                const SizedBox(height: 8),
+                Text(
+                  title,
+                  style: PhoneplanetTextStyles.smallTitle,
                 ),
-              ) : Container(width: double.infinity),
-              const SizedBox(height: 8),
-              Text(
-                title,
-                style: PhoneplanetTextStyles.smallTitle,
-              ),
-              const SizedBox(height: 4),
-              if (label != null) Text(
-                label!,
-                style: PhoneplanetTextStyles.subtitle,
-              ),
-              const SizedBox(height: 12),
-              Text(
-                'R\$ 3.400,00',
-                style: PhoneplanetTextStyles.smallText.copyWith(
-                  fontWeight: FontWeight.bold,
+                const SizedBox(height: 4),
+                if (label != null) Text(
+                  label!,
+                  style: PhoneplanetTextStyles.subtitle,
                 ),
-              ),
-              const SizedBox(height: 20),
-            ],
+                const SizedBox(height: 12),
+                Text(
+                  'R\$ 3.400,00',
+                  style: PhoneplanetTextStyles.smallText.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
         Positioned(
