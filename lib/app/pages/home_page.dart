@@ -167,7 +167,10 @@ class _HomePageState extends State<HomePage> {
                             padding: EdgeInsets.only(
                               right: product == state.newcomersProducts.last
                                   ? 0
-                                  : 8,
+                                  : 4,
+                              left: product == state.newcomersProducts.last
+                                  ? 4
+                                  : 0,
                             ),
                             child: PhoneplanetProductCard(
                               title: product.name!,
@@ -211,7 +214,8 @@ class _HomePageState extends State<HomePage> {
                         Expanded(
                           child: Padding(
                             padding: EdgeInsets.only(
-                              right: product == state.favorites.last ? 0 : 8,
+                              right: product == state.favorites.last ? 0 : 4,
+                              left: product == state.favorites.last ? 4 : 0,
                             ),
                             child: PhoneplanetProductCard(
                               title: product.name!,
