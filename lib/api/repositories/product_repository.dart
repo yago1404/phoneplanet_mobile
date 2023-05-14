@@ -32,7 +32,7 @@ class ProductRepository {
     List<Product> productList = [];
     Map<String, dynamic> response = /* await service.get('/products')*/
         productMock;
-    for (Map<String, dynamic> item in response as List) {
+    for (Map<String, dynamic> item in response['products'] as List) {
       productList.add(Product.fromJson(item));
     }
     return productList;

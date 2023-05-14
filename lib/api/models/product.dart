@@ -2,8 +2,8 @@ class Product {
   String? image;
   String? name;
   String? subtitle;
-  String? price;
-  String? termPrice;
+  num? termPrice;
+  num? price;
   bool? isFavorite;
   String? infos;
 
@@ -26,13 +26,13 @@ class Product {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['subtitle'] = this.subtitle;
-    data['price'] = this.price;
-    data['termPrice'] = this.termPrice;
-    data['isFavorite'] = this.isFavorite;
-    data['infos'] = this.infos;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['subtitle'] = subtitle;
+    data['price'] = price;
+    data['termPrice'] = termPrice;
+    data['isFavorite'] = isFavorite;
+    data['infos'] = infos;
     return data;
   }
 }
