@@ -8,8 +8,10 @@ class PhoneplanetProductCard extends StatelessWidget {
   final String? label;
   final String? image;
   final num price;
+  final bool isFavorite;
   final Function? onPressedCard;
   final Function? onPressedAdd;
+  final Function? onPressedFavorite;
 
   const PhoneplanetProductCard({
     Key? key,
@@ -19,6 +21,8 @@ class PhoneplanetProductCard extends StatelessWidget {
     this.image,
     this.onPressedCard,
     this.onPressedAdd,
+    this.onPressedFavorite,
+    this.isFavorite = false,
   }) : super(key: key);
 
   @override
@@ -76,6 +80,17 @@ class PhoneplanetProductCard extends StatelessWidget {
             icon: const Icon(
               Icons.add,
               color: Colors.white,
+            ),
+          ),
+        ),
+        Positioned(
+          top: 8,
+          right: 8,
+          child: GestureDetector(
+            onTap: () => onPressedFavorite?.call(),
+            child: Icon(
+              isFavorite ? Icons.favorite : Icons.favorite_border,
+              color: isFavorite ? PhoneplanetColors.red : Colors.grey,
             ),
           ),
         ),
