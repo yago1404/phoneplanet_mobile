@@ -9,11 +9,18 @@ class Loading extends HomeState {}
 
 class Loaded extends HomeState {
   final List<Product> newcomersProducts;
+  final List<Product> favorites;
 
-  Loaded({required this.newcomersProducts});
+  Loaded({
+    required this.newcomersProducts,
+    required this.favorites,
+  });
 
   @override
-  List<Object> get props => [newcomersProducts];
+  List<Object> get props => [
+        newcomersProducts,
+        favorites,
+      ];
 }
 
 class ErrorToLoad extends HomeState {

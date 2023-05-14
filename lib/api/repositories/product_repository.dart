@@ -1,7 +1,7 @@
 import 'package:phoneplanet/api/models/product.dart';
 import 'package:phoneplanet/api/service/service.dart';
 
-const Map<String, dynamic> productMock = {
+const Map<String, dynamic> newcomersMock = {
   'products': [
     {
       'image': 'https://d3ddx6b2p2pevg.cloudfront.net/Custom/Content/Products/10/97/1097084_smartphone-apple-iphone-13-pro-max-grafite-128gb_m3_637744691579753512.jpg',
@@ -22,6 +22,27 @@ const Map<String, dynamic> productMock = {
   ],
 };
 
+const Map<String, dynamic> favoritesMock = {
+  'products': [
+    {
+      'image': 'https://d3ddx6b2p2pevg.cloudfront.net/Custom/Content/Products/10/97/1097084_smartphone-apple-iphone-13-pro-max-grafite-128gb_m3_637744691579753512.jpg',
+      'name': 'Iphone 12',
+      'subtitle': 'Novo na caixa',
+      'price': 3000.50,
+      'termPrice': 3200,
+      'isFavorite': false,
+    },
+    {
+      'image': 'https://www.iplace.com.br/ccstore/v1/images/?source=/file/v1241423504693820270/products/219321.00-apple-ipad-9-geracao-wifi-cellular-256gb-cinzaespacial-mk4e3bz-a.jpg&height=475&width=475&height=470&width=470&quality=0.8',
+      'name': 'Ipad',
+      'subtitle': 'Promoção',
+      'price': 1100,
+      'termPrice': 1200,
+      'isFavorite': false,
+    },
+  ],
+};
+
 class ProductRepository {
   final IService service;
 
@@ -31,7 +52,18 @@ class ProductRepository {
     await Future.delayed(const Duration(seconds: 2));
     List<Product> productList = [];
     Map<String, dynamic> response = /* await service.get('/products')*/
-        productMock;
+        newcomersMock;
+    for (Map<String, dynamic> item in response['products'] as List) {
+      productList.add(Product.fromJson(item));
+    }
+    return productList;
+  }
+
+  Future<List<Product>> getFavorites() async {
+    await Future.delayed(const Duration(seconds: 2));
+    List<Product> productList = [];
+    Map<String, dynamic> response = /* await service.get('/products')*/
+        favoritesMock;
     for (Map<String, dynamic> item in response['products'] as List) {
       productList.add(Product.fromJson(item));
     }
