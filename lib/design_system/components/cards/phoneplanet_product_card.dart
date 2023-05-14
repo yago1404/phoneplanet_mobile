@@ -7,12 +7,14 @@ class PhoneplanetProductCard extends StatelessWidget {
   final String title;
   final String? label;
   final String? image;
+  final num price;
   final Function? onPressedCard;
   final Function? onPressedAdd;
 
   const PhoneplanetProductCard({
     Key? key,
     required this.title,
+    required this.price,
     this.label,
     this.image,
     this.onPressedCard,
@@ -56,7 +58,7 @@ class PhoneplanetProductCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  'R\$ 3.400,00',
+                  'R\$ ${price.toStringAsFixed(2).replaceAll(',', '').replaceAll('.', ',')}',
                   style: PhoneplanetTextStyles.smallText.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
