@@ -23,14 +23,14 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               const SizedBox(height: 32),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                      children: const [
                         Text(
                           'Olá Claudio',
                           style: PhoneplanetTextStyles.title,
@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     ),
-                    PhoneplanetIconButton(
+                    const PhoneplanetIconButton(
                       icon: Icon(
                         Icons.shopping_bag_outlined,
                       ),
@@ -138,11 +138,11 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               const SizedBox(height: 18),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: const [
                     Expanded(
                       child: PhoneplanetProductCard(
                         image:
@@ -184,11 +184,11 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               const SizedBox(height: 18),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: const [
                     Expanded(
                       child: PhoneplanetProductCard(
                         image:
