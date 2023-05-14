@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phoneplanet/app/shared/utils/phoneplanet_parser.dart';
 import 'package:phoneplanet/design_system/components/buttons/phoneplanet_icon_button.dart';
 import 'package:phoneplanet/design_system/phoneplanet_colors.dart';
 import 'package:phoneplanet/design_system/styles/phoneplanet_text_styles.dart';
@@ -62,7 +63,7 @@ class PhoneplanetProductCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  'R\$ ${price.toStringAsFixed(2).replaceAll(',', '').replaceAll('.', ',')}',
+                  PhoneplanetParser.parseToMoney(price),
                   style: PhoneplanetTextStyles.smallText.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
