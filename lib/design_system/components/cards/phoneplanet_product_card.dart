@@ -7,12 +7,14 @@ class PhoneplanetProductCard extends StatelessWidget {
   final String title;
   final String? label;
   final String? image;
+  final Function? onPressedAdd;
 
   const PhoneplanetProductCard({
     Key? key,
     required this.title,
     this.label,
     this.image,
+    this.onPressedAdd,
   }) : super(key: key);
 
   @override
@@ -63,7 +65,7 @@ class PhoneplanetProductCard extends StatelessWidget {
           bottom: 20,
           right: 8,
           child: PhoneplanetIconButton.primary(
-            onPressed: () {},
+            onPressed: () => onPressedAdd?.call(),
             icon: const Icon(
               Icons.add,
               color: Colors.white,
