@@ -51,7 +51,7 @@ class ProductRepository {
   Future<List<Product>> getNewcomersProducts() async {
     await Future.delayed(const Duration(seconds: 2));
     List<Product> productList = [];
-    Map<String, dynamic> response = /* await service.get('/products')*/
+    Map<String, dynamic> response = /* await service.get('/products/resume')*/
         newcomersMock;
     for (Map<String, dynamic> item in response['products'] as List) {
       productList.add(Product.fromJson(item));
@@ -62,7 +62,7 @@ class ProductRepository {
   Future<List<Product>> getFavorites() async {
     await Future.delayed(const Duration(seconds: 2));
     List<Product> productList = [];
-    Map<String, dynamic> response = /* await service.get('/favorites')*/
+    Map<String, dynamic> response = /* await service.get('/favorites/resume')*/
         favoritesMock;
     for (Map<String, dynamic> item in response['products'] as List) {
       productList.add(Product.fromJson(item));
