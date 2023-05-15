@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phoneplanet/app/pages/favorites_page.dart';
 import 'package:phoneplanet/app/pages/home_page.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -10,6 +11,15 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   int currentIndex = 0;
+  List<Widget> pages = const [
+    HomePage(),
+    FavoritesPage(),
+    Scaffold(
+      body: Center(
+        child: Text('Profile'),
+      ),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +44,7 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
         ],
       ),
-      body: const HomePage(),
+      body: pages[currentIndex],
     );
   }
 }
