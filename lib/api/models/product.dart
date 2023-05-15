@@ -2,10 +2,11 @@ class Product {
   String? image;
   String? name;
   String? subtitle;
+  String? infos;
   num? termPrice;
   num? price;
   bool? isFavorite;
-  String? infos;
+  bool? isSelected;
 
   Product({
     this.name,

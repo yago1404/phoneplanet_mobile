@@ -21,7 +21,9 @@ abstract class PhoneplanetColors {
 
   static const Color lightGrey = Color(0xFFEBEBEB);
 
-  static const Color backgroundScaffoldGrey = Color(0xFFF7F7F7);
+  static const Color green = Color(0xFF019117);
 
   static const Color red = Color(0xFFFF0000);
+
+  static const Color backgroundScaffoldGrey = Color(0xFFF7F7F7);
 }
