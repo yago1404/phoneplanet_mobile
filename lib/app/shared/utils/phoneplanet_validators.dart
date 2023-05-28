@@ -4,6 +4,16 @@ abstract class PhoneplanetValidators {
     return null;
   }
 
+  static String? passwordValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'O campo de senha é obrigatório.';
+    }
+    if (value.length < 4) {
+      return 'A senha deve conter ao menos 4 digitos';
+    }
+    return null;
+  }
+
   static String? emailValidator(String? value) {
     if (value == null || value.isEmpty) {
       return 'O campo de email é obrigatório.';

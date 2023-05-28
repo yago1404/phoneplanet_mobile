@@ -43,7 +43,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                   children: [
                     TextFormField(
                       controller: _passwordController,
-                      validator: PhoneplanetValidators.noNullableValidator,
+                      validator: PhoneplanetValidators.passwordValidator,
                       decoration: const InputDecoration(
                         label: Text('Senha'),
                       ),
@@ -54,8 +54,9 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                       controller: _confirmPasswordController,
                       validator: (value) {
                         String? valid;
-                        if (value != _passwordController.text)
+                        if (value != _passwordController.text) {
                           valid = 'As senhas devem ser iguais';
+                        }
                         return valid ??
                             PhoneplanetValidators.noNullableValidator(value);
                       },
