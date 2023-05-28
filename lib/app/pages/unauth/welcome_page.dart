@@ -107,7 +107,9 @@ class _WelcomePageState extends State<WelcomePage> {
           ),
           const Spacer(),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamed('/register');
+            },
             child: RichText(
               text: TextSpan(
                 text: 'Ainda não tem uma conta?',

@@ -9,11 +9,11 @@ abstract class PhoneplanetTheme {
     scaffoldBackgroundColor: PhoneplanetColors.backgroundScaffoldGrey,
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(30),
-        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(10),
+        // borderSide: BorderSide.none,
       ),
-      filled: true,
-      fillColor: PhoneplanetColors.lightGrey,
+      // filled: true,
+      // fillColor: PhoneplanetColors.lightGrey,
     ),
     elevatedButtonTheme: const ElevatedButtonThemeData(
       style: ButtonStyle(

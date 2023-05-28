@@ -5,12 +5,12 @@ import '../styles/phoneplanet_text_styles.dart';
 
 class PhoneplanetTitleHeader extends StatelessWidget {
   final String title;
-  final String label;
+  final String? label;
 
   const PhoneplanetTitleHeader({
     Key? key,
     required this.title,
-    required this.label,
+    this.label,
   }) : super(key: key);
 
   @override
@@ -43,8 +43,8 @@ class PhoneplanetTitleHeader extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          Text(
-            label,
+          if (label != null) Text(
+            label!,
             style: PhoneplanetTextStyles.label.copyWith(
               color: PhoneplanetColors.grey,
             ),
