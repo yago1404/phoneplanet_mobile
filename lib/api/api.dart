@@ -4,6 +4,7 @@ export 'package:phoneplanet/api/service/main_service.dart';
 
 // Repositories
 export 'package:phoneplanet/api/repositories/product_repository.dart';
+export 'package:phoneplanet/api/repositories/user_repository.dart';
 
 // Models
 export 'package:phoneplanet/api/models/product.dart';

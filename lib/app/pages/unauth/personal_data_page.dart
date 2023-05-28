@@ -96,7 +96,7 @@ class _PersonalDataPageState extends State<PersonalDataPage> {
                                           name: _nameController.text,
                                           birthday: _birthdayController.text,
                                           email: _emailController.text,
-                                          cpf: _cpfController.text,
+                                          cpf: _cpfController.text.replaceAll('.', '').replaceAll('-', ''),
                                           onSuccess: () {
                                             Navigator.of(context).pushNamed('/create-password');
                                           },

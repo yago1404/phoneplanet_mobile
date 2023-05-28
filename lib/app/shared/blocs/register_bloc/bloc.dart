@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phoneplanet/api/api.dart';
@@ -7,7 +9,9 @@ part 'state.dart';
 part 'event.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
-  RegisterBloc() : super(Loaded()) {
+  final UserRepository repository;
+
+  RegisterBloc({required this.repository}) : super(Loaded()) {
     on<SavePersonalData>(_savePersonalData);
     on<SavePassword>(_savePassword);
   }
@@ -17,7 +21,21 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     Emitter<RegisterState> emit,
   ) async {
     emit(Loading());
-    await Future.delayed(const Duration(seconds: 2));
+    bool canUseEmail = await repository.checkAvailability(
+      email: event.email,
+      cpf: event.cpf,
+    );
+    if (!canUseEmail) {
+      emit(
+        Loaded(
+          name: event.name,
+          email: event.email,
+          birthday: event.birthday,
+          cpf: event.cpf,
+        ),
+      );
+      return;
+    }
     emit(
       Loaded(
         name: event.name,

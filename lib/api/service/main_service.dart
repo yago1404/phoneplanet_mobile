@@ -76,6 +76,6 @@ class MainService implements IService {
     if (response.statusCode > 299) {
       throw ApiException(statusCode: response.statusCode, message: responseBody['message']);
     }
-    return responseBody['result'];
+    return responseBody;
   }
 }

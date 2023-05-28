@@ -24,6 +24,11 @@ class App extends StatelessWidget {
             service: MainService(),
           ),
         ),
+        RepositoryProvider(
+          create: (context) => UserRepository(
+            service: MainService(),
+          ),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -33,7 +38,9 @@ class App extends StatelessWidget {
             ),
           ),
           BlocProvider(
-            create: (context) => RegisterBloc(),
+            create: (context) => RegisterBloc(
+              repository: context.read<UserRepository>(),
+            ),
           ),
         ],
         child: MaterialApp(
