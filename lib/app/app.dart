@@ -4,9 +4,10 @@ import 'package:phoneplanet/api/api.dart';
 import 'package:phoneplanet/app/pages/dashboard_page.dart';
 import 'package:phoneplanet/app/pages/favorites_page.dart';
 import 'package:phoneplanet/app/pages/home_page.dart';
-import 'package:phoneplanet/app/pages/login/welcome_page.dart';
 import 'package:phoneplanet/app/shared/blocs/home_bloc/bloc.dart';
 import 'package:phoneplanet/design_system/phoneplanet_theme.dart';
+
+import 'pages/unauth/welcome_page.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
