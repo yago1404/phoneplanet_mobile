@@ -15,5 +15,13 @@ abstract class PhoneplanetTheme {
       filled: true,
       fillColor: PhoneplanetColors.lightGrey,
     ),
+    elevatedButtonTheme: const ElevatedButtonThemeData(
+      style: ButtonStyle(
+        elevation: MaterialStatePropertyAll(0),
+        minimumSize: MaterialStatePropertyAll(
+          Size(30, 50),
+        ),
+      ),
+    ),
   );
 }

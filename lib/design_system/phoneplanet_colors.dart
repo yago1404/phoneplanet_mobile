@@ -17,6 +17,22 @@ abstract class PhoneplanetColors {
     },
   );
 
+  static const MaterialColor secondary = MaterialColor(
+    0xFFc0e862,
+    {
+      50: Color(0xFFF4FAD4),
+      100: Color(0xFFE4F3A2),
+      200: Color(0xFFD4EE70),
+      300: Color(0xFFC4E93E),
+      400: Color(0xFFB3E40C),
+      500: Color(0xFFc0e862),
+      600: Color(0xFFA2D509),
+      700: Color(0xFF91D106),
+      800: Color(0xFF81CC03),
+      900: Color(0xFF70C700),
+    },
+  );
+
   static const Color grey = Color(0xFF9E9E9E);
 
   static const Color lightGrey = Color(0xFFEBEBEB);

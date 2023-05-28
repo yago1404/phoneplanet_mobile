@@ -4,6 +4,7 @@ import 'package:phoneplanet/api/api.dart';
 import 'package:phoneplanet/app/pages/dashboard_page.dart';
 import 'package:phoneplanet/app/pages/favorites_page.dart';
 import 'package:phoneplanet/app/pages/home_page.dart';
+import 'package:phoneplanet/app/pages/login/welcome_page.dart';
 import 'package:phoneplanet/app/shared/blocs/home_bloc/bloc.dart';
 import 'package:phoneplanet/design_system/phoneplanet_theme.dart';
 
@@ -32,7 +33,8 @@ class App extends StatelessWidget {
           title: 'Flutter Demo',
           theme: PhoneplanetTheme.light,
           routes: {
-            '/': (context) => const DashboardPage(),
+            '/': (context) => const WelcomePage(),
+            '/dashboard': (context) => const DashboardPage(),
             '/home': (context) => const HomePage(),
             '/favorites': (context) => const FavoritesPage(),
           },
