@@ -44,14 +44,14 @@ class _PersonalDataPageState extends State<PersonalDataPage> {
                       label: Text('Nome'),
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 16),
                   TextField(
                     controller: _emailController,
                     decoration: const InputDecoration(
                       label: Text('Email'),
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 16),
                   TextField(
                     controller: _birthdayController,
                     decoration: const InputDecoration(
@@ -59,7 +59,7 @@ class _PersonalDataPageState extends State<PersonalDataPage> {
                       hintText: 'Ex.: 12/12/2012',
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 16),
                   Row(
                     children: [
                       Expanded(
