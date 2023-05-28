@@ -7,12 +7,14 @@ class SavePersonalData extends RegisterEvent {
   final String email;
   final String birthday;
   final String cpf;
+  final Function onSuccess;
 
   SavePersonalData({
     required this.name,
     required this.birthday,
     required this.email,
     required this.cpf,
+    required this.onSuccess,
   });
 }
 

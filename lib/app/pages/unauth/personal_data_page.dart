@@ -85,25 +85,32 @@ class _PersonalDataPageState extends State<PersonalDataPage> {
                     Row(
                       children: [
                         Expanded(
-                          child: PhoneplanetButton.secondary(
-                            onTap: () {
-                              if (!_formKey.currentState!.validate()) return;
-                              context.read<RegisterBloc>().add(
-                                    SavePersonalData(
-                                      name: _nameController.text,
-                                      birthday: _birthdayController.text,
-                                      email: _emailController.text,
-                                      cpf: _cpfController.text,
-                                    ),
-                                  );
-                              Navigator.of(context).pushNamed('/create-password');
-                            },
-                            child: Text(
-                              'Continuar',
-                              style: PhoneplanetTextStyles.label.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                          child: BlocBuilder<RegisterBloc, RegisterState>(
+                            builder: (context, state) {
+                              return PhoneplanetButton.secondary(
+                                isLoading: state is Loading,
+                                onTap: () {
+                                  if (!_formKey.currentState!.validate()) return;
+                                  context.read<RegisterBloc>().add(
+                                        SavePersonalData(
+                                          name: _nameController.text,
+                                          birthday: _birthdayController.text,
+                                          email: _emailController.text,
+                                          cpf: _cpfController.text,
+                                          onSuccess: () {
+                                            Navigator.of(context).pushNamed('/create-password');
+                                          },
+                                        ),
+                                      );
+                                },
+                                child: Text(
+                                  'Continuar',
+                                  style: PhoneplanetTextStyles.label.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              );
+                            }
                           ),
                         ),
                       ],

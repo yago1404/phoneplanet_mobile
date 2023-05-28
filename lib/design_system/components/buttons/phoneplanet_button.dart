@@ -4,15 +4,19 @@ import 'package:phoneplanet/design_system/phoneplanet_colors.dart';
 class PhoneplanetButton extends StatelessWidget {
   final Widget child;
   final Color color;
+  final Color loadingColor;
   final Function onTap;
   final bool outlined;
+  final bool isLoading;
 
   const PhoneplanetButton.primary({
     Key? key,
     required this.child,
     required this.onTap,
     this.color = PhoneplanetColors.primaryColor,
+    this.loadingColor = Colors.white,
     this.outlined = false,
+    this.isLoading = false,
   }) : super(key: key);
 
   const PhoneplanetButton.secondary({
@@ -20,7 +24,9 @@ class PhoneplanetButton extends StatelessWidget {
     required this.child,
     required this.onTap,
     this.color = PhoneplanetColors.secondary,
+    this.loadingColor = Colors.black,
     this.outlined = false,
+    this.isLoading = false,
   }) : super(key: key);
 
   const PhoneplanetButton.outlined({
@@ -28,7 +34,9 @@ class PhoneplanetButton extends StatelessWidget {
     required this.child,
     required this.onTap,
     this.color = Colors.transparent,
+    this.loadingColor = Colors.black,
     this.outlined = true,
+    this.isLoading = false,
   }) : super(key: key);
 
   @override
@@ -52,7 +60,15 @@ class PhoneplanetButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              child,
+              isLoading
+                  ? SizedBox(
+                      height: 16,
+                      width: 16,
+                      child: CircularProgressIndicator(
+                        color: loadingColor,
+                      ),
+                    )
+                  : child,
             ],
           ),
         ),

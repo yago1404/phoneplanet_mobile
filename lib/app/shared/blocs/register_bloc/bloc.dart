@@ -16,6 +16,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     SavePersonalData event,
     Emitter<RegisterState> emit,
   ) async {
+    emit(Loading());
+    await Future.delayed(const Duration(seconds: 2));
     emit(
       Loaded(
         name: event.name,
@@ -24,6 +26,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         cpf: event.cpf,
       ),
     );
+    event.onSuccess();
   }
 
   Future<void> _savePassword(
