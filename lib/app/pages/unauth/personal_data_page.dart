@@ -53,8 +53,9 @@ class _PersonalDataPageState extends State<PersonalDataPage> {
                   TextField(
                     controller: _birthdayController,
                     decoration: const InputDecoration(
-                        label: Text('Aniversário'),
-                        hintText: 'Ex.: 12/12/2012'),
+                      label: Text('Aniversário'),
+                      hintText: 'Ex.: 12/12/2012',
+                    ),
                   ),
                   const SizedBox(height: 24),
                   Row(
