@@ -1,6 +1,8 @@
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
+import 'package:phoneplanet/design_system/components/buttons/phoneplanet_button.dart';
 import 'package:phoneplanet/design_system/components/phoneplanet_title_header.dart';
+import 'package:phoneplanet/design_system/styles/phoneplanet_text_styles.dart';
 
 class PersonalDataPage extends StatefulWidget {
   const PersonalDataPage({Key? key}) : super(key: key);
@@ -61,11 +63,14 @@ class _PersonalDataPageState extends State<PersonalDataPage> {
                   Row(
                     children: [
                       Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).pushNamed('/dashboard');
-                          },
-                          child: Text('Continuar'),
+                        child: PhoneplanetButton.secondary(
+                          onTap: () {},
+                          child: Text(
+                            'Continuar',
+                            style: PhoneplanetTextStyles.label.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ),
                     ],

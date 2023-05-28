@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phoneplanet/design_system/components/buttons/phoneplanet_button.dart';
 import 'package:phoneplanet/design_system/components/phoneplanet_title_header.dart';
 import 'package:phoneplanet/design_system/phoneplanet_colors.dart';
 import 'package:phoneplanet/design_system/styles/phoneplanet_text_styles.dart';
@@ -26,13 +27,8 @@ class _WelcomePageState extends State<WelcomePage> {
             child: Row(
               children: [
                 Expanded(
-                  child: ElevatedButton(
-                    style: const ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(
-                        PhoneplanetColors.secondary,
-                      ),
-                    ),
-                    onPressed: () {},
+                  child: PhoneplanetButton.secondary(
+                    onTap: () {},
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
