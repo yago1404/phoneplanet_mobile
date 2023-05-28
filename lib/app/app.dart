@@ -6,8 +6,10 @@ import 'package:phoneplanet/app/pages/favorites_page.dart';
 import 'package:phoneplanet/app/pages/home_page.dart';
 import 'package:phoneplanet/app/pages/unauth/personal_data_page.dart';
 import 'package:phoneplanet/app/shared/blocs/home_bloc/bloc.dart';
+import 'package:phoneplanet/app/shared/blocs/register_bloc/bloc.dart';
 import 'package:phoneplanet/design_system/phoneplanet_theme.dart';
 
+import 'pages/unauth/create_password_page.dart';
 import 'pages/unauth/welcome_page.dart';
 
 class App extends StatelessWidget {
@@ -30,12 +32,16 @@ class App extends StatelessWidget {
               productRepository: context.read<ProductRepository>(),
             ),
           ),
+          BlocProvider(
+            create: (context) => RegisterBloc(),
+          ),
         ],
         child: MaterialApp(
           title: 'Flutter Demo',
           theme: PhoneplanetTheme.light,
           routes: {
             '/': (context) => const WelcomePage(),
+            '/create-password': (context) => const CreatePasswordPage(),
             '/register': (context) => const PersonalDataPage(),
             '/dashboard': (context) => const DashboardPage(),
             '/home': (context) => const HomePage(),

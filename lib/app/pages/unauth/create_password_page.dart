@@ -1,4 +1,3 @@
-import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phoneplanet/app/shared/blocs/register_bloc/bloc.dart';
@@ -7,23 +6,18 @@ import 'package:phoneplanet/design_system/components/buttons/phoneplanet_button.
 import 'package:phoneplanet/design_system/components/phoneplanet_title_header.dart';
 import 'package:phoneplanet/design_system/styles/phoneplanet_text_styles.dart';
 
-class PersonalDataPage extends StatefulWidget {
-  const PersonalDataPage({Key? key}) : super(key: key);
+class CreatePasswordPage extends StatefulWidget {
+  const CreatePasswordPage({Key? key}) : super(key: key);
 
   @override
-  State<PersonalDataPage> createState() => _PersonalDataPageState();
+  State<CreatePasswordPage> createState() => _CreatePasswordPageState();
 }
 
-class _PersonalDataPageState extends State<PersonalDataPage> {
+class _CreatePasswordPageState extends State<CreatePasswordPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _cpfController = MaskedTextController(
-    mask: '000.000.000-00',
-  );
-  final MaskedTextController _birthdayController = MaskedTextController(
-    mask: '00/00/0000',
-  );
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +32,7 @@ class _PersonalDataPageState extends State<PersonalDataPage> {
           children: [
             const PhoneplanetTitleHeader(
               title: 'Cadastro',
-              label: 'Informações pessoais',
+              label: 'Crie uma senha de acesso ao App',
             ),
             const SizedBox(height: 32),
             Padding(
@@ -48,38 +42,27 @@ class _PersonalDataPageState extends State<PersonalDataPage> {
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: _nameController,
+                      controller: _passwordController,
                       validator: PhoneplanetValidators.noNullableValidator,
                       decoration: const InputDecoration(
-                        label: Text('Nome'),
+                        label: Text('Senha'),
                       ),
+                      obscureText: true,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
-                      controller: _emailController,
-                      validator: PhoneplanetValidators.emailValidator,
+                      controller: _confirmPasswordController,
+                      validator: (value) {
+                        String? valid;
+                        if (value != _passwordController.text)
+                          valid = 'As senhas devem ser iguais';
+                        return valid ??
+                            PhoneplanetValidators.noNullableValidator(value);
+                      },
                       decoration: const InputDecoration(
-                        label: Text('Email'),
+                        label: Text('Confirme a senha'),
                       ),
-                    ),
-                    const SizedBox(height: 16),
-                    TextFormField(
-                      controller: _cpfController,
-                      validator: PhoneplanetValidators.cpfValidator,
-                      decoration: const InputDecoration(
-                        label: Text('CPF'),
-                      ),
-                      keyboardType: TextInputType.number,
-                    ),
-                    const SizedBox(height: 16),
-                    TextFormField(
-                      controller: _birthdayController,
-                      validator: PhoneplanetValidators.birthdayValidator,
-                      decoration: const InputDecoration(
-                        label: Text('Aniversário'),
-                        hintText: 'Ex.: 12/12/2012',
-                      ),
-                      keyboardType: TextInputType.number,
+                      obscureText: true,
                     ),
                     const SizedBox(height: 16),
                     Row(
@@ -89,14 +72,10 @@ class _PersonalDataPageState extends State<PersonalDataPage> {
                             onTap: () {
                               if (!_formKey.currentState!.validate()) return;
                               context.read<RegisterBloc>().add(
-                                    SavePersonalData(
-                                      name: _nameController.text,
-                                      birthday: _birthdayController.text,
-                                      email: _emailController.text,
-                                      cpf: _cpfController.text,
+                                    SavePassword(
+                                      password: _passwordController.text,
                                     ),
                                   );
-                              Navigator.of(context).pushNamed('/create-password');
                             },
                             child: Text(
                               'Continuar',

@@ -33,4 +33,36 @@ abstract class PhoneplanetValidators {
     }
     return null;
   }
+
+  static String? cpfValidator(String? value) {
+    String cpf = value!.replaceAll(RegExp(r'[^0-9]'), '');
+    if (cpf.length != 11) {
+      return 'Digite um CPF válido';
+    }
+    if (RegExp(r'^(\d)\1*$').hasMatch(cpf)) {
+      return 'Digite um CPF válido';
+    }
+    List<int> numbers = cpf.split('').map(int.parse).toList();
+    int sum = 0;
+    for (int i = 0; i < 9; i++) {
+      sum += numbers[i] * (10 - i);
+    }
+    int remainder = sum % 11;
+    int firstDigit = remainder < 2 ? 0 : 11 - remainder;
+    if (numbers[9] != firstDigit) {
+      return 'Digite um CPF válido';
+    }
+    sum = 0;
+    for (int i = 0; i < 10; i++) {
+      sum += numbers[i] * (11 - i);
+    }
+    remainder = sum % 11;
+    int secondDigit = remainder < 2 ? 0 : 11 - remainder;
+
+    if (numbers[10] != secondDigit) {
+      return 'Digite um CPF válido';
+    }
+
+    return null;
+  }
 }
