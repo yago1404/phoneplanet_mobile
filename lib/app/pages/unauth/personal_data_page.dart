@@ -5,6 +5,7 @@ import 'package:phoneplanet/app/shared/blocs/register_bloc/bloc.dart';
 import 'package:phoneplanet/app/shared/utils/phoneplanet_validators.dart';
 import 'package:phoneplanet/design_system/components/buttons/phoneplanet_button.dart';
 import 'package:phoneplanet/design_system/components/phoneplanet_title_header.dart';
+import 'package:phoneplanet/design_system/phoneplanet_colors.dart';
 import 'package:phoneplanet/design_system/styles/phoneplanet_text_styles.dart';
 
 class PersonalDataPage extends StatefulWidget {
@@ -90,16 +91,22 @@ class _PersonalDataPageState extends State<PersonalDataPage> {
                               return PhoneplanetButton.secondary(
                                 isLoading: state is Loading,
                                 onTap: () {
-                                  if (!_formKey.currentState!.validate()) return;
+                                  if (!_formKey.currentState!.validate()) {
+                                    return;
+                                  }
                                   context.read<RegisterBloc>().add(
                                         SavePersonalData(
                                           name: _nameController.text,
                                           birthday: _birthdayController.text,
                                           email: _emailController.text,
-                                          cpf: _cpfController.text.replaceAll('.', '').replaceAll('-', ''),
+                                          cpf: _cpfController.text
+                                              .replaceAll('.', '')
+                                              .replaceAll('-', ''),
                                           onSuccess: () {
-                                            Navigator.of(context).pushNamed('/create-password');
+                                            Navigator.of(context)
+                                                .pushNamed('/create-password');
                                           },
+                                          onError: _onErrorCheckData,
                                         ),
                                       );
                                 },
@@ -110,7 +117,7 @@ class _PersonalDataPageState extends State<PersonalDataPage> {
                                   ),
                                 ),
                               );
-                            }
+                            },
                           ),
                         ),
                       ],
@@ -121,6 +128,49 @@ class _PersonalDataPageState extends State<PersonalDataPage> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  _onErrorCheckData({required String message, required String title}) {
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                title,
+                style: PhoneplanetTextStyles.title,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                message,
+                style: PhoneplanetTextStyles.label.copyWith(
+                  color: PhoneplanetColors.grey,
+                ),
+              ),
+              const SizedBox(height: 24),
+              Row(
+                children: [
+                  Expanded(
+                    child: PhoneplanetButton.primary(
+                      child: Text(
+                        'Ok',
+                        style: PhoneplanetTextStyles.label.copyWith(
+                          color: Colors.white,
+                        ),
+                      ),
+                      onTap: () => Navigator.of(context).pop(),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

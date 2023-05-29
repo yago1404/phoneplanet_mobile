@@ -21,11 +21,11 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     Emitter<RegisterState> emit,
   ) async {
     emit(Loading());
-    bool canUseEmail = await repository.checkAvailability(
-      email: event.email,
-      cpf: event.cpf,
-    );
-    if (!canUseEmail) {
+    try {
+      await repository.checkAvailability(
+        email: event.email,
+        cpf: event.cpf,
+      );
       emit(
         Loaded(
           name: event.name,
@@ -34,17 +34,11 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           cpf: event.cpf,
         ),
       );
-      return;
+      event.onSuccess();
+    } on ApiException catch (e) {
+      event.onError(title: 'Erro ao checar dados', message: e.message ?? 'Erro ao checar dados');
+      return emit(RegisterError(message: e.message ?? 'Erro ao checar dados'));
     }
-    emit(
-      Loaded(
-        name: event.name,
-        email: event.email,
-        birthday: event.birthday,
-        cpf: event.cpf,
-      ),
-    );
-    event.onSuccess();
   }
 
   Future<void> _savePassword(
