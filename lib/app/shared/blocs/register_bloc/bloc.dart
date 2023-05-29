@@ -47,6 +47,16 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   ) async {
     if (state is Loaded) {
       Loaded loadedState = state as Loaded;
+      String birthday = loadedState.birthday!;
+      List<String> birthdayList = birthday.split('/');
+      birthday = '${birthdayList[2]}-${birthdayList[1]}-${birthdayList[0]}';
+      var response = repository.createUser({
+        'name': loadedState.name,
+        'email': loadedState.email,
+        'birthday': birthday,
+        'cpf': loadedState.cpf,
+        'password': event.password,
+      });
       emit(
         Loaded(
           name: loadedState.name,

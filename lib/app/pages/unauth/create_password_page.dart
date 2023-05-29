@@ -79,7 +79,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                                   );
                             },
                             child: Text(
-                              'Continuar',
+                              'Criar conta',
                               style: PhoneplanetTextStyles.label.copyWith(
                                 fontWeight: FontWeight.bold,
                               ),
