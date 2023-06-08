@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phoneplanet/api/api.dart';
+import 'package:phoneplanet/api/models/user.dart';
 import 'package:phoneplanet/api/models/user_prospect.dart';
 
 part 'state.dart';
@@ -53,7 +54,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       String birthday = repository.userProspect!.birthday;
       List<String> birthdayList = birthday.split('/');
       birthday = '${birthdayList[2]}-${birthdayList[1]}-${birthdayList[0]}';
-      Map<String, dynamic> response = await repository.createUser({
+      await repository.createUser({
         'name': repository.userProspect!.name,
         'email': repository.userProspect!.email,
         'birthday': birthday,

@@ -1,8 +1,10 @@
 import 'package:phoneplanet/api/api.dart';
+import 'package:phoneplanet/api/models/user.dart';
 import 'package:phoneplanet/api/models/user_prospect.dart';
 
 class UserRepository {
   UserProspect? userProspect;
+  User? user;
   final IService service;
 
   UserRepository({required this.service});
@@ -12,7 +14,8 @@ class UserRepository {
     return response['statusCode'] == 200;
   }
 
-  Future<Map<String, dynamic>> createUser(Map<String, dynamic> user) async {
-    return await service.post('/users/create', body: user);
+  Future<void> createUser(Map<String, dynamic> user) async {
+    Map<String, dynamic> response = await service.post('/users/create', body: user);
+    this.user = User.fromJson(response['result']['user']);
   }
 }
