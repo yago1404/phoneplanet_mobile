@@ -1,6 +1,8 @@
 import 'package:phoneplanet/api/api.dart';
+import 'package:phoneplanet/api/models/user_prospect.dart';
 
 class UserRepository {
+  UserProspect? userProspect;
   final IService service;
 
   UserRepository({required this.service});

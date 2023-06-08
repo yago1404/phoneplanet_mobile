@@ -22,8 +22,12 @@ class SavePersonalData extends RegisterEvent {
 
 class SavePassword extends RegisterEvent {
   final String password;
+  final Function({required String message}) onError;
+  final Function onSuccess;
 
   SavePassword({
     required this.password,
+    required this.onError,
+    required this.onSuccess,
   });
 }

@@ -7,28 +7,7 @@ abstract class RegisterState extends Equatable {
 
 class Loading extends RegisterState {}
 
-class Loaded extends RegisterState {
-  final String? name;
-  final String? email;
-  final String? birthday;
-  final String? cpf;
-  final String? password;
-
-  Loaded({
-    this.name,
-    this.birthday,
-    this.email,
-    this.cpf,
-    this.password,
-  });
-
-  @override
-  List<Object> get props => [
-        name ?? '',
-        email ?? '',
-        birthday ?? '',
-      ];
-}
+class Loaded extends RegisterState {}
 
 class RegisterError extends RegisterState {
   final String message;

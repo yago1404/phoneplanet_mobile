@@ -4,6 +4,7 @@ import 'package:phoneplanet/app/shared/blocs/register_bloc/bloc.dart';
 import 'package:phoneplanet/app/shared/utils/phoneplanet_validators.dart';
 import 'package:phoneplanet/design_system/components/buttons/phoneplanet_button.dart';
 import 'package:phoneplanet/design_system/components/phoneplanet_title_header.dart';
+import 'package:phoneplanet/design_system/phoneplanet_colors.dart';
 import 'package:phoneplanet/design_system/styles/phoneplanet_text_styles.dart';
 
 class CreatePasswordPage extends StatefulWidget {
@@ -69,22 +70,32 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                     Row(
                       children: [
                         Expanded(
-                          child: PhoneplanetButton.secondary(
-                            onTap: () {
-                              if (!_formKey.currentState!.validate()) return;
-                              context.read<RegisterBloc>().add(
-                                    SavePassword(
-                                      password: _passwordController.text,
-                                    ),
-                                  );
-                            },
-                            child: Text(
-                              'Criar conta',
-                              style: PhoneplanetTextStyles.label.copyWith(
-                                fontWeight: FontWeight.bold,
+                          child: BlocBuilder<RegisterBloc, RegisterState>(
+                              builder: (context, state) {
+                            return PhoneplanetButton.secondary(
+                              isLoading: state is Loading,
+                              onTap: () {
+                                if (!_formKey.currentState!.validate()) return;
+                                context.read<RegisterBloc>().add(
+                                      SavePassword(
+                                        password: _passwordController.text,
+                                        onError: _onErrorSave,
+                                        onSuccess: () => Navigator.of(context)
+                                            .pushNamedAndRemoveUntil(
+                                          '/dashboard',
+                                          (Route<dynamic> route) => false,
+                                        ),
+                                      ),
+                                    );
+                              },
+                              child: Text(
+                                'Criar conta',
+                                style: PhoneplanetTextStyles.label.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                          ),
+                            );
+                          }),
                         ),
                       ],
                     ),
@@ -94,6 +105,49 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  _onErrorSave({required String message}) {
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Erro ao criar usuário',
+                style: PhoneplanetTextStyles.title,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                message,
+                style: PhoneplanetTextStyles.label.copyWith(
+                  color: PhoneplanetColors.grey,
+                ),
+              ),
+              const SizedBox(height: 24),
+              Row(
+                children: [
+                  Expanded(
+                    child: PhoneplanetButton.primary(
+                      child: Text(
+                        'Ok',
+                        style: PhoneplanetTextStyles.label.copyWith(
+                          color: Colors.white,
+                        ),
+                      ),
+                      onTap: () => Navigator.of(context).pop(),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
